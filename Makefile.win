@@ -1,0 +1,10 @@
+LIB=-static-libgcc -static-libstdc++ -lmingw32 -L/usr/local/lib -ldl -ljson-c -lws2_32 -luser32
+INC=-I/usr/local/include
+
+default: pvr-tvserver.dll
+
+pvr-tvserver.dll: client.cpp tvserver.cpp utils.cpp
+	g++ -o pvr-tvserver.dll -Wall -s -O2 -shared -DDLL $(INC) client.cpp tvserver.cpp utils.cpp $(LIB)
+
+clean:
+	rm -f pvr-tvserver.dll
